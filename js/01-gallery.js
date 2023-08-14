@@ -8,10 +8,13 @@ const fotoList = document.querySelector(".gallery");
 const addFotoList = galleryItems.map(foto => `
     <li class="gallery__item">
         <a class="gallery__link">
-            <img class="gallery__image" src=${foto.preview} alt=${foto.description}/>
+            <img class="gallery__image"
+            src=${foto.preview} 
+            srcset=${foto.original} 
+            alt=${foto.description}/>
         </a>
     </li>
-`).join(" ")
+`).join(" ") //----Nie dodawałem <div> </div> bo coś nieładnie to wyglądało----
 
 fotoList.innerHTML = addFotoList
 
@@ -19,19 +22,16 @@ fotoList.addEventListener("click", selectFoto)
 
 function selectFoto(event) {
     if (event.target.nodeName !== "IMG") {
-        console.log(event.target.nodeName)
         return;
     }
-    const selectedFoto = event.target.src
-    console.log(selectedFoto)
 
+    const modalFoto = basicLightbox.create(`<img src="${event.target.srcset}"/>`);
+    modalFoto.show()
 
-    basicLightbox.create(`
-        <h1>HTML</h1>
-		<p>HTML inside a lightbox.</p>
-        `)
-    .show();
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            modalFoto.close()
+        }
+    });
+};
 
-
-
-}
