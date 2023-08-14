@@ -25,9 +25,12 @@ function selectFoto(event) {
     const selectedFoto = event.target.src
     console.log(selectedFoto)
 
-    const selectedImage = eventImage.target.dataset.source;
-    const openedImage = basicLightbox.create(`<img src="${selectedImage}">`);
-    openedImage.show();
+
+    basicLightbox.create(`
+        <h1>HTML</h1>
+		<p>HTML inside a lightbox.</p>
+        `)
+    .show();
 
 
 
