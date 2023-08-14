@@ -24,35 +24,10 @@ function selectFoto(event) {
     }
     const selectedFoto = event.target.src
     console.log(selectedFoto)
-    //------------niżej  to tylko próba-----------------
-document.querySelector('button.html').onclick = () => {
 
-	basicLightbox.create(`
-		<h1>HTML</h1>
-		<p>HTML inside a lightbox.</p>
-	`).show()
-
-}
-
-document.querySelector('button.callbacks').onclick = (e) => {
-
-	const html = `
-		<h1>Callbacks</h1>
-		<p>Take a look at the console of your browser.<br>This lightbox will close automaticly to demonstrate the close-callback.</p>
-	`
-
-	const instance = basicLightbox.create(html, {
-		onShow: (instance) => console.log('onShow', instance),
-		onClose: (instance) => console.log('onClose', instance)
-	})
-
-	instance.show((instance) => console.log('finished show()', instance))
-
-	setTimeout(() => {
-		instance.close((instance) => console.log('finished close()', instance))
-	}, 3000)
-
-}
+    const selectedImage = eventImage.target.dataset.source;
+    const openedImage = basicLightbox.create(`<img src="${selectedImage}">`);
+    openedImage.show();
 
 
 
