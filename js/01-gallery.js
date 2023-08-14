@@ -13,6 +13,15 @@ const newFotoList = galleryItems.map(foto => `
             </a>
         </div>
     </li>
-`).join('');
+`).join(" ")
 
 fotoList.innerHTML = newFotoList
+
+
+document.querySelector('.gallery__image').addEventListener("click", () => {
+console.log(galleryItems[1].original)
+const instance = basicLightbox.create(`
+    <img src="${galleryItems[1].original}" >`)
+
+    instance.show()
+});
