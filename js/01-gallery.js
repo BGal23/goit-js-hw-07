@@ -22,8 +22,8 @@ function selectFoto(event) {
         console.log(event.target.nodeName)
         return;
     }
-    console.log(event.target.alt)
     const selectedFoto = event.target.src
+    console.log(selectedFoto)
 
 
 }
