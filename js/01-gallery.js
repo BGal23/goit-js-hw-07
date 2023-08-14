@@ -5,12 +5,25 @@ console.log(galleryItems);
 
 const fotoList = document.querySelector(".gallery");
 
-const newFotoList = galleryItems.map(foto => `
-    <li>
+const addFotoList = galleryItems.map(foto => `
+    <li class="gallery__item">
         <a class="gallery__link">
-            <img class="gallery__image" src=${foto.preview} alt=${foto.preview}/>
+            <img class="gallery__image" src=${foto.preview} alt=${foto.description}/>
         </a>
     </li>
 `).join(" ")
 
-fotoList.innerHTML = newFotoList
+fotoList.innerHTML = addFotoList
+
+fotoList.addEventListener("click", selectFoto)
+
+function selectFoto(event) {
+    if (event.target.nodeName !== "IMG") {
+        console.log(event.target.nodeName)
+        return;
+    }
+    console.log(event.target.alt)
+    const selectedFoto = event.target.src
+
+
+}
