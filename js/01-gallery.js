@@ -10,13 +10,16 @@ const addFotoList = galleryItems.map(foto => `
         <a class="gallery__link">
             <img class="gallery__image"
             src=${foto.preview} 
-            srcset=${foto.original} 
+            data-source=${foto.original} 
             alt=${foto.description}/>
         </a>
     </li>
 `).join(" ") //----Nie dodawałem <div> </div> bo coś nieładnie to wyglądało----
 
 fotoList.innerHTML = addFotoList
+
+//fotoList.insertAdjacentElement("afterbegin", addFotoList) 
+// ------Coś nie chce mi działać .insertAdjacentHTML() nie wiem o co chodzi---------
 
 fotoList.addEventListener("click", selectFoto)
 
@@ -25,13 +28,17 @@ function selectFoto(event) {
         return;
     }
 
-    const modalFoto = basicLightbox.create(`<img src="${event.target.srcset}"/>`);
+    const modalFoto = basicLightbox.create(`<img src="${event.target.dataset.source}"/>`);
     modalFoto.show()
 
-    document.addEventListener("keydown", event => {
+    const closePhoto = (event) => {
         if (event.key === "Escape") {
-            modalFoto.close()
-        }
-    });
+            modalFoto.close();
+            document.removeEventListener("keydown", closePhoto)
+        };
+    };
+
+    document.addEventListener("keydown", closePhoto)
+
 };
 

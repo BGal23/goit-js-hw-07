@@ -23,9 +23,3 @@ let modalFoto = new SimpleLightbox('.gallery__link', {
     captionsData: 'alt',
     captionDelay: 250,
     });
-
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        modalFoto.close()
-    }
-});
