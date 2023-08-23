@@ -16,10 +16,7 @@ const addFotoList = galleryItems.map(foto => `
     </li>
 `).join(" ") //----Nie dodawałem <div> </div> bo coś nieładnie to wyglądało----
 
-fotoList.innerHTML = addFotoList
-
-//fotoList.insertAdjacentElement("afterbegin", addFotoList) 
-// ------Coś nie chce mi działać .insertAdjacentHTML() nie wiem o co chodzi---------
+fotoList.insertAdjacentHTML("afterbegin", addFotoList) 
 
 fotoList.addEventListener("click", selectFoto)
 
